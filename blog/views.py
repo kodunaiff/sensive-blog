@@ -44,7 +44,7 @@ def index(request):
 
 
 def post_detail(request, slug):
-    queryset = Post.objects.annotate(likes_count=Count('likes'))
+    queryset = Post.objects.popular()
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.select_related('author')
 
