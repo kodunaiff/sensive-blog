@@ -86,7 +86,7 @@ def post_detail(request, slug):
 
 
 def tag_filter(request, tag_title):
-    tag = Tag.objects.get(title=tag_title)
+    tag = get_object_or_404(Tag, title=tag_title)
 
     all_posts = Post.objects.prefetch_related('author').prefetch_related(
         Prefetch('tags', queryset=Tag.objects.popular()))
